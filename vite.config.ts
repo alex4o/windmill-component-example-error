@@ -17,23 +17,21 @@ export default defineConfig(({ mode }) => ({
         ),
     }),
   ],
-
-  resolve:
-    mode === "development"
-      ? {}
-      : {
-          alias: {
-            react: "https://unpkg.com/react@18.2.0/umd/react.development.js",
-            "react-dom":
-              "https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js",
-          },
-        },
   build: {
     lib: {
       entry: "src/lib.tsx",
       name: "wmc",
       fileName: (format) => `cc.${format}.js`,
       formats: ["iife"],
+    },
+    rollupOptions: {
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      },
     },
   },
   define: {
