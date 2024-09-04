@@ -2,8 +2,28 @@ import { useEffect, useState } from "react";
 import "./component.css";
 import React from "react";
 import { Setter } from "../global";
+import { Canvas } from "reaflow";
 
 type Input = any;
+
+const nodes = [
+  {
+    id: "1",
+    text: "hello",
+  },
+  {
+    id: "2",
+    text: "world",
+  },
+];
+
+const edges = [
+  {
+    id: "1-2",
+    from: "1",
+    to: "2",
+  },
+];
 
 function Component({
   passSetters,
@@ -83,6 +103,7 @@ function Component({
             </button>
           </div>
         </div>
+        <Canvas nodes={nodes} edges={edges} />
       </div>
     </>
   );
